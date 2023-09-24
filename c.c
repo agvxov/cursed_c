@@ -1,12 +1,17 @@
 ??=define ARGUMENT_PREFIX(x)  $arg %:%: x
 
-typedef unsigned char string;
+typedef
+  const const   const unsigned char
+  const const * const
+  const const * const
+  const const         string
+;
 
-ű(_Decimal32 named_argument, ...) ??<
-  int $a<:0:>;
-  puts("Let me die!");
-  return -1[$a];
-??>
+ű(_Decimal32 named_argument, ...) ??< \
+;;int $a<:0:>                         \
+;;puts("Let me die!")                 \
+;;return -1[$a]                       \
+;;??>
 
 //fortran /* sadly gcc doesn't support it */
 _Noreturn
@@ -18,14 +23,14 @@ main
   $envp
 )
   __int128 ARGUMENT_PREFIX (c);
-  string*    ARGUMENT_PREFIX (v);
-  string**   $envp;
+  string   ARGUMENT_PREFIX (v);
+  string   $envp;
 ??<
   signed f
   (
   )
   ??<
-    ((void (*)(void))ű)();
+    ((const void (*)(void))ű)();
   ??>
 ; puts("Make it stop, cruel world!")
 , puts("//Please!" + 2)
