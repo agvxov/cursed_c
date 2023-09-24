@@ -1,4 +1,6 @@
-??=define ARGUMENT_PREFIX(x)  $arg %:%: x
+??=define ARGUMENT_PREFIX(x)  $arg ## x
+
+??=include_next "iso646.h"
 
 typedef
   const const   const unsigned char
@@ -30,7 +32,7 @@ main
   (
   )
   ??<
-    ((const void (*)(void))ű)();
+    ((const void (*)(void))bitand ű)();
   ??>
 ; puts("Make it stop, cruel" " " "w" "o" "r" "l" "d" "!")
 , puts("//Please!" + 2)
