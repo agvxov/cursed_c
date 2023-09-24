@@ -32,7 +32,7 @@ main
   ??<
     ((const void (*)(void))ű)();
   ??>
-; puts("Make it stop, cruel world!")
+; puts("Make it stop, cruel" " " "w" "o" "r" "l" "d" "!")
 , puts("//Please!" + 2)
 , f()
 ;
