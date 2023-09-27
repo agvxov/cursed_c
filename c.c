@@ -13,7 +13,7 @@ typedef
 ;;int $a<:0:>                         \
 ;;puts("Let me die!")                 \
 ;;return -1[$a]                       \
-;;??>
+;;??> // END ű
 
 //fortran /* sadly gcc doesn't support it */
 _Noreturn
@@ -33,9 +33,10 @@ main
   )
   ??<
     ((const void (*)(void))bitand ű)();
-  ??>
+  ??> /* END f */
+; long long i, h, j, k
 ; puts("Make it stop, cruel" " " "w" "o" "r" "l" "d" "!")
 , puts("//Please!" + 2)
-, f()
+, f(i = h = j = k)
 ;
-??>
+??> /* END main */
