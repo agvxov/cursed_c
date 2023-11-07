@@ -8,15 +8,15 @@ typedef
   const const * const
   const const         string
 ;
-
 ű(_Decimal32 named_argument, ...) ??< \
 ;;int $a<:0:>                         \
 ;;puts("Let me segfault!")            \
-;;return -1[$a]                       \
+;;return (-1[$a])                     \
 ;;??> // END ű
 
 //fortran /* sadly gcc doesn't support it */
 _Noreturn
+__attribute__((noreturn))
 const void
 main
 (
