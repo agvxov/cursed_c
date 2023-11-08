@@ -24,9 +24,9 @@ Under `gcc` the `-trigraphs` flag is actually required to make them available.
 
 The ones relevant here are:
 ```
-	??=    :    #
-	??<    :    {
-	??>    :    }
+??=    :    #
+??<    :    {
+??>    :    }
 ```
 
 So for example `??=define` really is just equivalent to `#define`.
@@ -185,7 +185,7 @@ for Assembly programmers,
 the `return` statement highlevel enough to be considered many ways similar to a function.
 For this reason they may stick to the following syntax:
 ```C
-    return(0);
+return(0);
 ```
 
 ### END comments
@@ -209,11 +209,11 @@ Both of these specify that `func` will never return.
 
 C:
 ```C
-    __attribute__((noreturn))
+__attribute__((noreturn))
 ```
 C++:
 ```C++
-    [[ noreturn ]]
+[[ noreturn ]]
 ```
 
 ### K&R arguments
@@ -233,11 +233,11 @@ And I'm not talking about C in particular.
 Adjacent string literals are always (compile time) concetanated.
 Therefor:
 ```C
-    "Make it stop, cruel" " " "w" "o" "r" "l" "d" "!"
+"Make it stop, cruel" " " "w" "o" "r" "l" "d" "!"
 ```
 Costlessly becomes:
 ```C
-    "Make it stop, cruel world!"
+"Make it stop, cruel world!"
 ```
 Why is it cursed? Ask who ever fears using it like so:
 ```C
@@ -292,7 +292,7 @@ However,
 for wholeness,
 it stacks.
 ```C
-    i = h = j = k
+i = h = j = k
 ```
 Is evaluated right to left.
 I.e. it becomes "assign k to j; assign j to h; assign h to i;".
@@ -307,16 +307,16 @@ Again, it's stackable.
 This -similar to the wise usage of assignments,-
 opens a little door for playing with loop conditions.
 ```C
-    do {
-        // ...
-    } while((fun(&a), a));
+do {
+    // ...
+} while((fun(&a), a));
 ```
 
 
 But also, if you ever wanted to make semi-colons jealous to make them love you more,
 here is your chance.
 ```C
-    fun1(), fun2(), fun3(), fun4()
+fun1(), fun2(), fun3(), fun4()
 ```
 
 > Do not use the comma operator.
