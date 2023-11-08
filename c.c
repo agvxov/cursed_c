@@ -35,6 +35,7 @@ main
     ((const void (*)(void))bitand ű)();
   ??> /* END f */
 ; long long i, h, j, k
+; https://google.com
 ; puts("Make it stop, cruel" " " "w" "o" "r" "l" "d" "!")
 , puts("//Please!" + 2)
 , f(i = h = j = k)

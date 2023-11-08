@@ -249,6 +249,22 @@ puts("Message line 1"
      "Message line 2");
 ```
 
+### Google?
+Google.
+```C
+; https://google.com
+```
+URLs happen to be valid C.
+More precisely,
+they are per chance a label plus a comment.
+You can only have one per protocol per function,
+choose wisely.
+
+The address was chosen in particular,
+because hard coding google end points into source is as evil
+(or rather, no longer "don't be evil")
+as it gets.
+
 ### Literal pointer artimetrics
 A string literal "decays" into a const char pointer,
 therefor `puts("//Please!" + 2)` is just the heretic way of saying:
