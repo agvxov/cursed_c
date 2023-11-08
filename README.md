@@ -157,7 +157,7 @@ Note that the addess is taken only figuratively,
 the array `a` decays to a pointer to the first element,
 so the more scientific notation is `*(a + n)`
 #### Smiles
-+ TODO
++ TODO; i forgot where "<::>" comes from
 #### Reverse reference
 ```C
 -1[$a];
