@@ -1,5 +1,5 @@
 # Cursed C
-> An attempt to create the worst C program ever by repeated abusing obsecure features.
+> An attempt to create the worst C program ever by repeatedly abusing obsecure features.
 See `c.c` for the core code.
 Note that there are no version restrains were inposed and
 extensions are also included.
@@ -45,7 +45,7 @@ Historically it has been used to generate symbol names.
 
 ### include\_next
 Including is surprisingly highlevel with search paths and precedence.
-Turns out this happens to open a whole in functionality,
+Turns out this happens to open a hole in functionality,
 which is otherwise absent from C.
 
 So,
@@ -147,8 +147,8 @@ is valid,
 however it's a rarely though about possibility.
 Also, semi-colons are stackable.
 
-**Pro-tip:** the next time someone proposes identing with spaces to you,
-suggest identing with semi-colons.
+**Pro-tip:** the next time someone proposes indenting with spaces to you,
+suggest indenting with semi-colons.
 
 ### 'a' array
 When accessing an array element,
@@ -246,7 +246,7 @@ puts("Message line 2");
 ```
 Used instead of:
 ```C
-puts("Message line 1"
+puts("Message line 1\n"
      "Message line 2");
 ```
 
