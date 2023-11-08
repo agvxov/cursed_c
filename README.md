@@ -24,26 +24,26 @@ Under `gcc` the `-trigraphs` flag is actually required to make them available.
 
 The ones relevant here are:
 ```
-		??=    :    #
-		??<    :    {
-		??>    :    }
+	??=    :    #
+	??<    :    {
+	??>    :    }
 ```
 
 So for example `??=define` really is just equivalent to `#define`.
 
-## $$$
+### \$\$\$
 The dollar sign is valid to be the first (and only the first) char of a symbol name.
 My guess is that it is so for stubborn people
 who prefer their variable names to start with a '$' as it has to in some other languages.
 Perhaps it's for anchient parsers/syntax highlighters?
 Create an issue if you know better.
 
-## Concetanation macro operator
+### Concetanation macro operator
 `##` is a special operator available inside macro definitions.
 It will literally glue together the arguments on it's 2 sides.
 Historically it has been used to generate symbol names.
 
-## include\_next
+### include\_next
 Including is surprisingly highlevel with search paths and precedence.
 Turns out this happens to open a whole in functionality,
 which is otherwise absent from C.
@@ -69,7 +69,7 @@ For this reason `#include_next` was added as a widely accepted extension,
 which excludes the current path from the list of searchable path
 to prohibit recursive inclusion.
 
-## iso646.h
+### iso646.h
 From what I've seen,
 this perfectly standard header that tends to be relatively little known.
 If you know C++ and about its keyword operators,
@@ -81,14 +81,14 @@ Later down it's abused to get the address of `ű`:
 bitand ű
 ```
 Where -you guessed it,
-`bitand` is just macrod to be`&` at the end of the day.
+`bitand` is just macrod to be `&` at the end of the day.
 
-## \_Decimal32
+### \_Decimal32
 It's exactly what it sounds like,
 a decimal fraction available in C.
 Here, as a GNU extension.
 
-## Dot dot dot
+### Dot dot dot
 Not nearly as obsecure as the rest, but worth including.
 `...` signals to the compiler that any number of values may be pushed into the stack
 on any call to this function.
@@ -103,7 +103,7 @@ extern int printf (const char *__restrict __format, ...);
 ```
 That's why it can handle both`printf("%d", 1)` and `printf("%d %d", 1, 2)`.
 
-## const const const
+### const const const
 The specifier `const` turns out to be infinitly stackable.
 In fact, it can be applied to the wrong spot too.
 
@@ -157,6 +157,7 @@ Note that the addess is taken only figuratively,
 the array `a` decays to a pointer to the first element,
 so the more scientific notation is `*(a + n)`
 #### Smiles
++ TODO
 #### Reverse reference
 ```C
 -1[$a];
@@ -331,7 +332,8 @@ here is your chance.
 > Do not use the comma operator.
 > 
 > Do not use the comma operator.
->      - Repeater, https://cplusplus.com/forum/beginner/272615/ 
+> 
+>      -- Repeater, https://cplusplus.com/forum/beginner/272615/ 
 
 ## Challange
 + Try to make the project worse
