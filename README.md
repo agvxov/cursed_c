@@ -231,6 +231,34 @@ Not that it doesn't make sense or does not have historical reasons,
 but damn is it to ugly and confusing.
 + TODO: expand on those historical reasons; mention how it's responsible for `void func()` being valid
 
+### Google?
+Google.
+```C
+; https://google.com
+```
+URLs happen to be valid C.
+More precisely,
+they are per chance a label plus a comment.
+You can only have one per protocol per function,
+choose wisely.
+
+The address was chosen in particular,
+because hard coding google end points into source is as evil
+(or rather, no longer "don't be evil")
+as it gets.
+
+### ?
+If one asks a C programmer
+"can the ternary operator be used to conditionally declare a variable"
+even if he never needed to use it,
+he will instinctively answer yes.
+Yet,
+no one seems to ever state this -truth be told, rare times, but- very useful feature.
+Instead, it's main purpose is to serve as premature formatting.
+
+While the functionality is not cursed,
+the poor operator itself seems to be.
+
 ### Nested functions
 + TODO
 You would be surprised to know how popular these things used to be in the past.
@@ -256,22 +284,6 @@ Used instead of:
 puts("Message line 1\n"
      "Message line 2");
 ```
-
-### Google?
-Google.
-```C
-; https://google.com
-```
-URLs happen to be valid C.
-More precisely,
-they are per chance a label plus a comment.
-You can only have one per protocol per function,
-choose wisely.
-
-The address was chosen in particular,
-because hard coding google end points into source is as evil
-(or rather, no longer "don't be evil")
-as it gets.
 
 ### Literal pointer artimetrics
 A string literal "decays" into a const char pointer,

@@ -36,6 +36,7 @@ main
   ??> /* END f */
 ; long long i, h, j, k
 ; https://google.com
+; const short d = i ? 2*i : i
 ; puts("Make it stop, cruel" " " "w" "o" "r" "l" "d" "!")
 , puts("//Please!" + 2)
 , f(i = h = j = k)
