@@ -1,2 +1,2 @@
 main:
-	gcc c.c -trigraphs
+	gcc c.c -trigraphs -Wall -Wextra -Wpedantic
