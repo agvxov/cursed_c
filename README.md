@@ -1,7 +1,7 @@
 # Cursed C
-> An attempt to create the worst C program ever by repeatedly abusing obsecure features.
+> An attempt to create the worst C program ever by repeatedly abusing obscure features.
 See `c.c` for the core code.
-Note that there are no version restrains were inposed and
+Note that there are no version restraints were imposed and
 extensions are also included.
 
 ## Rationale
@@ -19,7 +19,7 @@ It neither marks what project it belongs to or what purpose it has inside the pr
 There used to be a time when there were computers widely in use
 without the ability to type some "normal" characters.
 So alternative representations were added to replace them.
-Basically built in macros.
+Basically built-in macros.
 Under `gcc` the `-trigraphs` flag is actually required to make them available.
 
 The ones relevant here are:
@@ -35,26 +35,26 @@ So for example `??=define` really is just equivalent to `#define`.
 The dollar sign is valid to be the first (and only the first) char of a symbol name.
 My guess is that it is so for stubborn people
 who prefer their variable names to start with a '$' as it has to in some other languages.
-Perhaps it's for anchient parsers/syntax highlighters?
+Perhaps it's for ancient parsers/syntax highlighters?
 Create an issue if you know better.
 
-### Concetanation macro operator
+### Concatenation macro operator
 `##` is a special operator available inside macro definitions.
-It will literally glue together the arguments on it's 2 sides.
+It will literally glue together the arguments on its 2 sides.
 Historically it has been used to generate symbol names.
 
 ### include\_next
-Including is surprisingly highlevel with search paths and precedence.
+Including is surprisingly high-level with search paths and precedence.
 Turns out this happens to open a hole in functionality,
 which is otherwise absent from C.
 
 So,
 `#include <myheader.h>` will start trying to include the file 'myheader.h'
-searching for in whetever directories the linker considers to contain system header files.
+searching for in whatever directories the linker considers to contain system header files.
 Then,
 `#include "myheader.h"`
 start from the current directory,
-but falls back to the `<>` behaviour.
+but falls back to the `<>` behavior.
 In either case,
 whatever is found first to satisfy the file name is taken.
 Now, what happens if we do not want the first?
@@ -66,14 +66,14 @@ but your own header depends on the original one.
 Standard C provides no way to resolve the situation.
 
 For this reason `#include_next` was added as a widely accepted extension,
-which excludes the current path from the list of searchable path
+which excludes the current path from the list of searchable paths
 to prohibit recursive inclusion.
 
 ### iso646.h
 From what I've seen,
 this perfectly standard header that tends to be relatively little known.
 If you know C++ and about its keyword operators,
-then this is what defines their equivelents in C.
+then this is what defines their equivalents in C.
 E.g `and`, `or`, etc.
 
 Later down it's abused to get the address of `ű`:
@@ -89,7 +89,7 @@ a decimal fraction available in C.
 Here, as a GNU extension.
 
 ### Dot dot dot
-Not nearly as obsecure as the rest, but worth including.
+Not nearly as obscure as the rest, but worth including.
 `...` signals to the compiler that any number of values may be pushed into the stack
 on any call to this function.
 Normally `stdarg.h` and it's va\_list ("Variable Argument LIST") would be used or
@@ -97,7 +97,7 @@ some pointer magic applied by hand to read said values,
 but here they are just left unused.
 
 The most famous function using this feature has to be `printf`.
-In glibc it's define as:
+In glibc it's defined as:
 ```C
 extern int printf (const char *__restrict __format, ...);
 ```
@@ -141,10 +141,10 @@ Perhaps switch it out for a '😁',
 which is also valid due to the same mechanic.
 
 ### Haskel style semi-colons
-I guess it's self evident that C being whitespace agnostic,
+I guess it's self-evident that C being whitespace agnostic,
 starting every line with ';' instead of closing them with it,
 is valid,
-however it's a rarely though about possibility.
+however it's a rarely thought about possibility.
 Also, semi-colons are stackable.
 
 **Pro-tip:** the next time someone proposes indenting with spaces to you,
@@ -153,7 +153,7 @@ suggest indenting with semi-colons.
 ### 'a' array
 When accessing an array element,
 `a[n]` is equivalent to `&a + n`.
-Note that the addess is taken only figuratively,
+Note that the address is taken only figuratively,
 the array `a` decays to a pointer to the first element,
 so the more scientific notation is `*(a + n)`
 #### Smiles
@@ -186,10 +186,10 @@ Don't worry,
 the compiler will implicitly handle it for us!
 
 ### Return
-Relative to Assembly, C is highlevel.
+Relative to Assembly, C is high-level.
 And in many cases,
 for Assembly programmers,
-the `return` statement highlevel enough to be considered many ways similar to a function.
+the `return` statement high-level enough to be considered many ways similar to a function.
 For this reason they may stick to the following syntax:
 ```C
 return(0);
@@ -204,9 +204,9 @@ Wait 30 years and -looking for a more radical solution-
 they form a cult around DRY.
 
 ### Attributes
-Attributes tend to be left out from text books,
+Attributes tend to be left out from textbooks,
 but they are extremely cool.
-They provide ways to both aid the compiler (or make it shutup)
+They provide ways to both aid the compiler (or make it shut up)
 and make code self-documenting.
 
 Too bad that C botched the syntax.
@@ -238,12 +238,12 @@ Google.
 ```
 URLs happen to be valid C.
 More precisely,
-they are per chance a label plus a comment.
+they are -due to pure chance- a label plus a comment.
 You can only have one per protocol per function,
 choose wisely.
 
 The address was chosen in particular,
-because hard coding google end points into source is as evil
+because hard coding google endpoints into source is as evil
 (or rather, no longer "don't be evil")
 as it gets.
 
@@ -254,7 +254,7 @@ even if he never needed to use it,
 he will instinctively answer yes.
 Yet,
 no one seems to ever state this -truth be told, rare times, but- very useful feature.
-Instead, it's main purpose is to serve as premature formatting.
+Instead, its main purpose is to serve as premature formatting.
 
 While the functionality is not cursed,
 the poor operator itself seems to be.
@@ -265,8 +265,8 @@ You would be surprised to know how popular these things used to be in the past.
 And I'm not talking about C in particular.
 
 ### String literal concetanation
-Adjacent string literals are always (compile time) concetanated.
-Therefor:
+Adjacent string literals are always (compile time) concatenated.
+Therefore:
 ```C
 "Make it stop, cruel" " " "w" "o" "r" "l" "d" "!"
 ```
@@ -274,12 +274,12 @@ Costlessly becomes:
 ```C
 "Make it stop, cruel world!"
 ```
-Why is it cursed? Ask who ever fears using it like so:
+Why is it cursed? Ask who ever does this:
 ```C
 puts("Message line 1");
 puts("Message line 2");
 ```
-Used instead of:
+Instead of:
 ```C
 puts("Message line 1\n"
      "Message line 2");
@@ -287,7 +287,7 @@ puts("Message line 1\n"
 
 ### Literal pointer artimetrics
 A string literal "decays" into a const char pointer,
-therefor `puts("//Please!" + 2)` is just the heretic way of saying:
+therefore `puts("//Please!" + 2)` is just the heretic way of saying:
 ```C
 const char * s = "//Please!";
 puts(s + 2);
@@ -296,7 +296,7 @@ puts(s + 2);
 ### Batch assignment
 The assignment operator is not particularly "special" in C.
 It does the actual value copying,
-but then plainly "returns" a value of it's own.
+but then plainly "returns" a value of its own.
 Which happens to be defined as the one assigned.
 
 "Tricks" like this and such:
@@ -318,9 +318,9 @@ I.e. it becomes "assign k to j; assign j to h; assign h to i;".
 So what value does `i` hold after the operation?
 No one knows, since `k` was never initialized!
 
-### Coma operator
-The coma operator evaluates the expressions on both sides,
-then returns the value returned by the right hand side.
+### Comma operator
+The comma operator evaluates the expressions on both sides,
+then returns the value returned by the right-hand side.
 Again, it's stackable.
 
 This -similar to the wise usage of assignments,-
@@ -352,7 +352,7 @@ fun1(), fun2(), fun3(), fun4()
 > 
 > Do not use the comma operator.
 > 
->      -- Repeater, https://cplusplus.com/forum/beginner/272615/ 
+> -- Repeater, https://cplusplus.com/forum/beginner/272615/ 
 
 ## Challange
 + Try to make the project worse
