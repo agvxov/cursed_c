@@ -4,6 +4,8 @@ See `c.c` for the core code.
 Note that there were no version restraints imposed and
 extensions are also included.
 
+![demo](media/cursed_c_1.jpeg)
+
 ## Rationale
 + it was fun
 + perhaps it will be educational for someone
