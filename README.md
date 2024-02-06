@@ -1,7 +1,7 @@
 # Cursed C
 > An attempt to create the worst C program ever by repeatedly abusing obscure features.
 See `c.c` for the core code.
-Note that there are no version restraints were imposed and
+Note that there were no version restraints imposed and
 extensions are also included.
 
 ## Rationale
