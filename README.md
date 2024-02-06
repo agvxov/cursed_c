@@ -229,14 +229,6 @@ C++:
 [[ noreturn ]]
 ```
 
-### K&R arguments
-The language design of C is truely genious.
-Brian Kernighan and Dennis Ritchie got so many things perfectly right.
-One clear exception is their original function declaration syntax.
-Not that it doesn't make sense or does not have historical reasons,
-but damn is it to ugly and confusing.
-+ TODO: expand on those historical reasons; mention how it's responsible for `void func()` being valid
-
 ### Google?
 Google.
 ```C
@@ -359,6 +351,155 @@ fun1(), fun2(), fun3(), fun4()
 > Do not use the comma operator.
 > 
 > -- Repeater, https://cplusplus.com/forum/beginner/272615/ 
+
+### K&R arguments
+The language design of C is truely genious.
+Brian Kernighan and Dennis Ritchie got so many things perfectly right.
+One clear exception is their original function declaration syntax.
+Not that it doesn't make sense or does not have historical reasons,
+but damn is it to ugly and confusing.
+
+A reasonably cleaned up version of our `main()` would look like this:
+```C
+void main(argc, argv, envp)
+int argc;
+char * * argv;
+char * * envp;
+{ ; }
+```
+Where our parameters are named first,
+then their type is specified.
+This original way,
+used to be the only way to do it.
+It may look like absolutely useless typing at first,
+but there are a few things to consider.
+
+1. it roots from B syntax,
+which is typeless:
+```B
+main(argc, argv, envp) {
+    ;
+}
+```
+
+2. One doesn't specify the types of your arguments
+until the function definition:
+```C
+
+void main(argc, argv, envp);
+
+void main(argc, argv, envp)
+char * * argv;
+int argc;
+char * * envp;
+{ ; }
+```
+Which implies that
+a) you don't have to keep your declarations and definitions in sync
+b) calls can compile without type checking
+
+3. It blends with other syntax rules, allowing this:
+```C
+void main(argc, argv, envp)
+char * * argv;
+int argc;
+char * * envp;
+{ ; }
+```
+And this:
+```C
+void main(argc, argv, envp)
+int argc;
+char * * argv, * * envp;
+{ ; }
+```
+
+### I would like to declare the type of nothing
+```C
+g() int; int; { int; }
+```
+GCC allows you have a typename on its own line.
+Not even a warning in sight.
+
+Why does it allow it? Good question.
+
+### Empty parenthesis 
+How would you declare a function with no parameters?
+If you answered the following:
+```C
+f();
+```
+Then you just found a footgun!
+That actually signals how the function takes...
+well,
+we don't know what it takes, so better allow anything!
+Take a look at `g`:
+```C
+g() int; int; { int; }
+```
+Ignoring those `int`s,
+one could assume it takes 0 arguments,
+yet if you glimpse at how it's called:
+```C
+g(i = h = j = k)
+```
+You will see how passing one int is valid, in fact, it doesn't even warrant a warning!
+This,
+again routes from the K&R style,
+where as established before,
+arguments where not expected to be type checked.
+
+Sooo,
+is `g()` equivalent to `g(...)`?
+No!
+For one,
+`...` required a named argument before itself until C2X.
+However,
+in the case of `g()` the compiler not required to perform type promotions.
+Also,
+the generated assembly is... strange.
+That's what `g().c` and `g(...).c` are here for.
+Here is the relevant part of their disassembly:
+```Asm
+// @BAKE gcc -g -O0 "$@" -o "$*"                                |  // @BAKE gcc -g -O0 "$@" -o "$*" -Wall -Wpedantic
+
+g() {                                                           |  g(...) {
+    1129:       f3 0f 1e fa             endbr64                        1129:       f3 0f 1e fa             endbr64
+    112d:       55                      push   %rbp                    112d:       55                      push   %rbp
+    112e:       48 89 e5                mov    %rsp,%rbp               112e:       48 89 e5                mov    %rsp,%rbp
+                                                                >      1131:       48 83 ec 38             sub    $0x38,%rsp
+                                                                >      1135:       48 89 bd 50 ff ff ff    mov    %rdi,-0xb0(%rbp)
+                                                                >      113c:       48 89 b5 58 ff ff ff    mov    %rsi,-0xa8(%rbp)
+                                                                >      1143:       48 89 95 60 ff ff ff    mov    %rdx,-0xa0(%rbp)
+                                                                >      114a:       48 89 8d 68 ff ff ff    mov    %rcx,-0x98(%rbp)
+                                                                >      1151:       4c 89 85 70 ff ff ff    mov    %r8,-0x90(%rbp)
+                                                                >      1158:       4c 89 8d 78 ff ff ff    mov    %r9,-0x88(%rbp)
+                                                                >      115f:       84 c0                   test   %al,%al
+                                                                >      1161:       74 20                   je     1183 <g+0x5a>
+                                                                >      1163:       0f 29 45 80             movaps %xmm0,-0x80(%rbp
+                                                                >      1167:       0f 29 4d 90             movaps %xmm1,-0x70(%rbp
+                                                                >      116b:       0f 29 55 a0             movaps %xmm2,-0x60(%rbp
+                                                                >      116f:       0f 29 5d b0             movaps %xmm3,-0x50(%rbp
+                                                                >      1173:       0f 29 65 c0             movaps %xmm4,-0x40(%rbp
+                                                                >      1177:       0f 29 6d d0             movaps %xmm5,-0x30(%rbp
+                                                                >      117b:       0f 29 75 e0             movaps %xmm6,-0x20(%rbp
+                                                                >      117f:       0f 29 7d f0             movaps %xmm7,-0x10(%rbp
+        return 2;                                                          return 2;
+    1131:       b8 02 00 00 00          mov    $0x2,%eax        |      1183:       b8 02 00 00 00          mov    $0x2,%eax
+}                                                                  }
+    1136:       5d                      pop    %rbp             |      1188:       c9                      leave
+    1137:       c3                      ret                     |      1189:       c3                      ret
+```
+On the right side,
+`g(...)` actually reads a bunch of values from the stack into registers.
+What I *think* is happening is that the compiler would really like to optimize
+arguments being read from the stack directly,
+but since -O0 was on,
+it was not allowed to make any assumptions about,
+how `g` will be called,
+hence it loads as much as it can.
+
+(If you know better, please correct me!)
 
 ## Challange
 + Try to make the project worse

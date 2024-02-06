@@ -1,1 +1,3 @@
-a.out
+*.out
+.gdb_history
+diff.txt

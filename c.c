@@ -14,6 +14,8 @@ typedef
 ;;return (-1[$a])                     \
 ;;??> // END ű
 
+g() int; int; { int; }
+
 //fortran /* sadly gcc doesn't support it */
 _Noreturn
 __attribute__((noreturn))
@@ -39,6 +41,6 @@ main
 ; const short d = i ? 2*i : i
 ; puts("Make it stop, cruel" " " "w" "o" "r" "l" "d" "!")
 , puts("//Please!" + 2)
-, f(i = h = j = k)
+, f(g(i = h = j = k))
 ;
 ??> /* END main */
