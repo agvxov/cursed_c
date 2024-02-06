@@ -258,11 +258,22 @@ While the functionality is not cursed,
 the poor operator itself seems to be.
 
 ### Nested functions
-+ TODO
 You would be surprised to know how popular these things used to be in the past.
 And I'm not talking about C in particular.
+> In the case of nested procedures, the scope rules permit, for example, the definition
+> of a procedure to include the definition of subsidiary procedures without concern for
+> interference with other global procedures. This capability facilitates writing pro-
+> cedures and often simplifies their usage.
+>
+> -- David R. Hanson; Is Block Structure Necessary? (1981)
+Yet,
+they have fallen out from the public's taste so much that C++ disallows it.
+Nested classes seem to be looked down upon too now days,
+even in bloody Java tutorials where providing a single file would
+be so damn much clearer and easier,
+but I digress.
 
-### String literal concetanation
+### String literal concatanation
 Adjacent string literals are always (compile time) concatenated.
 Therefore:
 ```C
