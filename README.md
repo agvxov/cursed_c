@@ -4,7 +4,11 @@ See `c.c` for the core code.
 Note that there were no version restraints imposed and
 extensions are also included.
 
+---
+
 ![demo](media/cursed_c_1.mini.jpeg)
+
+---
 
 ## Rationale
 + it was fun
