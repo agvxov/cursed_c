@@ -98,7 +98,7 @@ Here, as a GNU extension.
 Not nearly as obscure as the rest, but worth including.
 `...` signals to the compiler that any number of values may be pushed into the stack
 on any call to this function.
-Normally `stdarg.h` and it's va\_list ("Variable Argument LIST") would be used or
+Normally `stdarg.h` and its va\_list ("Variable Argument LIST") would be used or
 some pointer magic applied by hand to read said values,
 but here they are just left unused.
 
