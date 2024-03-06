@@ -275,7 +275,28 @@ even in bloody Java tutorials where providing a single file would
 be so damn much clearer and easier,
 but I digress.
 
-### String literal concatanation
+### Code in switch
+A switch statement is just a fancy code block with a bunch of labels and a jump-table.
+So, in our:
+```C
+    switch (h) {
+        int a = 89;
+        default: break;
+    }
+```
+expression,
+the available values mappings (none) are compared to h,
+then execution jumps to `default` as no match was found.
+Now the question becomes:
+how is that `a` is defined to 89?
+Easy. It's not.
+`a` gets defined, but its assignment is skipped.
+It's because variable declarations are always allocated at the start of the scope,
+no further questions asked.
+For all the compiler cares,
+`int a;` might as well have been written under `default:`.
+
+### String literal concatenation
 Adjacent string literals are always (compile time) concatenated.
 Therefore:
 ```C
@@ -296,7 +317,7 @@ puts("Message line 1\n"
      "Message line 2");
 ```
 
-### Literal pointer artimetrics
+### Literal pointer arithmetics
 A string literal "decays" into a const char pointer,
 therefore `puts("//Please!" + 2)` is just the heretic way of saying:
 ```C

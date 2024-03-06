@@ -35,6 +35,12 @@ main
   )
   ??<
     ((const void (*)(void))bitand ű)();
+    switch (h)
+    ??<
+        int a = 89;
+        default:
+        break;
+    ??>
   ??> /* END f */
 ; long long i, h, j, k
 ; https://google.com
