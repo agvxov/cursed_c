@@ -247,7 +247,7 @@ as it gets.
 
 ### ?
 If one asks a C programmer
-"can the ternary operator be used to conditionally declare a variable"
+"can the ternary operator be used to conditionally declare a (const) variable"
 even if he never needed to use it,
 he will instinctively answer yes.
 Yet,
