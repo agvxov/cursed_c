@@ -1,5 +1,6 @@
 ??=define ARGUMENT_PREFIX(x)  $arg ## x
 
+??=include "h.h"
 ??=include_next "iso646.h"
 
 typedef

@@ -457,6 +457,48 @@ Not even a warning in sight.
 
 Why does it allow it? Good question.
 
+# h.h
+As you know, this project compiles under gcc,
+still catting out h.h should make you raise your eyebrow.
+```C
+#error
+```
+Its impossible that that's the actual header included and
+I must have messed with the compiler, right?
+Well, yes, but not the way you think.
+If you wanted to prove me guilty of manipulating the include path
+by inspecting the build script,
+you could not:
+```sh
+gcc c.c -trigraphs -Wall -Wextra -Wpedantic
+```
+Tho, there is also something suspicious going on with `h.h`:
+```sh
+gcc detention/h.h -o ./h.h.gch
+```
+Where the contents of `detention/h.h` seems like something that would translate.
+That is a good lead, however `detention/` hardly a standard folder to override with.
+
+The solution is in the `.gch` extension as in "GNU Compiled Header".
+Its what it sounds like, a header processed by gcc.
+After the header is compiled once,
+its code can be included in multiple source files without it being reprocessed.
+This trick can significantly speed up compile times.
+Well, when it works that is.
+For example if it was 1 line lower in the source,
+it would make the operation `#error` out.
+The documentation lists 10 reasons why a compiled header could be not respected
+and `iso646.h` breaks *one* of those.
+Considering that's a standard header with around a dozen defines,
+you can guess how stable it is.
+Not to mention it does it silently.
+gcc provides no feedback whether it did or did not use a compiled header,
+let alone why.
+Pessimism aside,
+compiled headers are great as long as you can make sure
+they are at the top of the source (with an `-include` perhaps),
+they are just kind of awkward in practice.
+
 ### Empty parenthesis 
 How would you declare a function with no parameters?
 If you answered the following:
@@ -535,5 +577,7 @@ hence it loads as much as it can.
 
 (If you know better, please correct me!)
 
-## Challange
+## Challenge
 + Try to make the project worse
+### Completionists
+* SurmanPP
