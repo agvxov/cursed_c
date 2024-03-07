@@ -110,7 +110,7 @@ extern int printf (const char *__restrict __format, ...);
 That's why it can handle both`printf("%d", 1)` and `printf("%d %d", 1, 2)`.
 
 ### const const const
-The specifier `const` turns out to be infinitly stackable.
+The specifier `const` turns out to be infinitely stackable.
 In fact, it can be applied to the wrong spot too.
 
 ```C
@@ -285,16 +285,17 @@ So, in our:
     }
 ```
 expression,
-the available values mappings (none) are compared to h,
+the available value mappings (none) are compared to h,
 then execution jumps to `default` as no match was found.
 Now the question becomes:
 how is that `a` is defined to 89?
 Easy. It's not.
 `a` gets defined, but its assignment is skipped.
-It's because variable declarations are always allocated at the start of the scope,
+It's because variable declarations always result in allocations at the start of the scope,
 no further questions asked.
 For all the compiler cares,
 `int a;` might as well have been written under `default:`.
+However, the value copy is skipped.
 
 ### String literal concatenation
 Adjacent string literals are always (compile time) concatenated.
@@ -387,7 +388,7 @@ fun1(), fun2(), fun3(), fun4()
 > -- Repeater, https://cplusplus.com/forum/beginner/272615/ 
 
 ### K&R arguments
-The language design of C is truely genious.
+The language design of C is truly genius.
 Brian Kernighan and Dennis Ritchie got so many things perfectly right.
 One clear exception is their original function declaration syntax.
 Not that it doesn't make sense or does not have historical reasons,
@@ -457,9 +458,9 @@ Not even a warning in sight.
 
 Why does it allow it? Good question.
 
-# h.h
+### h.h
 As you know, this project compiles under gcc,
-still catting out h.h should make you raise your eyebrow.
+Still, catting out h.h should make you raise your eyebrow.
 ```C
 #error
 ```
@@ -477,7 +478,7 @@ Tho, there is also something suspicious going on with `h.h`:
 gcc detention/h.h -o ./h.h.gch
 ```
 Where the contents of `detention/h.h` seems like something that would translate.
-That is a good lead, however `detention/` hardly a standard folder to override with.
+That is a good lead, however `detention/` is hardly a standard folder to override with.
 
 The solution is in the `.gch` extension as in "GNU Compiled Header".
 Its what it sounds like, a header processed by gcc.
@@ -485,19 +486,20 @@ After the header is compiled once,
 its code can be included in multiple source files without it being reprocessed.
 This trick can significantly speed up compile times.
 Well, when it works that is.
+
 For example if it was 1 line lower in the source,
 it would make the operation `#error` out.
-The documentation lists 10 reasons why a compiled header could be not respected
+The documentation lists 10 reasons why a compiled header could be rejected
 and `iso646.h` breaks *one* of those.
 Considering that's a standard header with around a dozen defines,
 you can guess how stable it is.
-Not to mention it does it silently.
+Not to mention it fails silently.
 gcc provides no feedback whether it did or did not use a compiled header,
 let alone why.
 Pessimism aside,
 compiled headers are great as long as you can make sure
-they are at the top of the source (with an `-include` perhaps),
-they are just kind of awkward in practice.
+they are at the top of the source (with an `-include` perhaps)
+and seem way more reliable with clang (because they have their own version too).
 
 ### Empty parenthesis 
 How would you declare a function with no parameters?
@@ -576,6 +578,8 @@ how `g` will be called,
 hence it loads as much as it can.
 
 (If you know better, please correct me!)
+
+---
 
 ## Challenge
 + Try to make the project worse
