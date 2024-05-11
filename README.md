@@ -89,6 +89,12 @@ bitand ű
 Where -you guessed it,
 `bitand` is just macrod to be `&` at the end of the day.
 
+To make it extra fitting, it uses the worst imaginable formatting,
+which is -fun fact- unreproducible with '<>'s as the preprocessor '""'s
+just so happens to use the exact grammar as fully featured C string literals do.
+Lucky us, every '<>' include is a valid '""' include with only a slight compile overhead
+(as the local include is path is checked first, then the system headers).
+
 ### \_Decimal32
 It's exactly what it sounds like,
 a decimal fraction available in C.
