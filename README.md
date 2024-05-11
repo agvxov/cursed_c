@@ -86,7 +86,7 @@ Later down it's abused to get the address of `ű`:
 ```C++
 bitand ű
 ```
-Where -you guessed it,
+Where -you guessed it- 
 `bitand` is just macrod to be `&` at the end of the day.
 
 To make it extra fitting, it uses the worst imaginable formatting,
