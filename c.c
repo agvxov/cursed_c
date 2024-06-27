@@ -19,6 +19,21 @@ typedef
 
 g() int; int; { int; }
 
+duff() ??<
+    char src[] = "Copy this message";
+    int n = sizeof(src);
+    char dest[n];
+    int i = 0;
+    int j = 0;
+    switch (n % 4) {
+        case 0: do { dest[i++] = src[j++];
+        case 1:      dest[i++] = src[j++];
+        case 2:      dest[i++] = src[j++];
+        case 3:      dest[i++] = src[j++];
+        } while (j < n);
+    }
+??>
+
 //fortran /* sadly gcc doesn't support it */
 _Noreturn
 __attribute__((noreturn))
@@ -51,5 +66,6 @@ main
 ; puts("Make it stop, cruel" " " "w" "o" "r" "l" "d" "!")
 , puts("//Please!" + 2)
 , f(g(i = h = j = k))
+; duff()
 ;
 ??> /* END main */

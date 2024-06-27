@@ -585,6 +585,60 @@ hence it loads as much as it can.
 
 (If you know better, please correct me!)
 
+### Duff()
+As you can see `case` statements work inside nested blocks of the corresponding `switch`.
+Which is funny by itself, but what that allows us to do is something called a "Duff's Device".
+This allows us to force loop unrolling within the bounds of C.
+
+I can explain it best with an incremental example. Consider:
+```C
+do {
+    perform_stuff();
+} while (counter++ < repeat_count);
+```
+Here,
+after every call to `perform_stuff()` we have to perform a jump instuction
+to the top of the loop for every repetition.
+With the standards of modern software,
+the cost is small,
+however there are circomstances where it could be a legitamate performance concern.
+An optimization would be:
+```C
+do {
+    perform_stuff();
+    perform_stuff();
+    perform_stuff();
+    perform_stuff();
+    counter += 4;
+} while (counter < repeat_count);
+```
+Now, we only need a jump after every 4 calls!
+Great,
+except if `repeat_count` is not a multiple of 4,
+we actually call `perform_stuff()` the wrong number of times...
+This is where Duff's Device comes into the picture.
+```C
+switch (repeat_count % 4) {
+    case 0: do { perform_stuff(); counter++;
+    case 1:      perform_stuff(); counter++;
+    case 2:      perform_stuff(); counter++;
+    case 3:      perform_stuff(); counter++;
+    } while (counter < repeat_count);
+}
+```
+The switch "eats away" some number of calls,
+guaranteeing `(repeat_count - count) % 4 == 0` and
+`peform_stuff()` being called the desired number of times.
+(Unless it was 0, that's an edge case we do not account for in the example for simplicity.)
+In our `duff()` we apply this trick to copying a string.
+
+It should also be mentioned,
+that due to modern compiler optimizations,
+Duff's Device may or may not result in actual performance gains
+([see here](https://belaycpp.com/2021/11/18/duffs-device-in-2021/)).
+You may read Duff's own thoughts regarding it
+[here](http://doc.cat-v.org/bell_labs/duffs_device).
+
 ---
 
 ## Challenge
