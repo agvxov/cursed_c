@@ -3,11 +3,13 @@ WARNINGS := -Wall -Wextra -Wpedantic
 # Remove some that would show up too many times to be enjoyable
 WARNINGS += -Wno-duplicate-decl-specifier -Wno-trigraphs
 
+CFLAGS := ${WARNINGS} -ggdb
+
 main: h.h.gch
-	gcc ${WARNINGS} c.c -trigraphs
+	gcc ${CFLAGS} c.c -trigraphs
 
 %.h.gch: detention/%.h
-	gcc ${WARNINGS} $< -o ./$@
+	gcc ${CFLAGS} $< -o ./$@
 
 g:
 	bake "tool/g().c"
