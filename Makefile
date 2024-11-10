@@ -1,8 +1,13 @@
+# Add extra warnings to stress how horrid the code is
+WARNINGS := -Wall -Wextra -Wpedantic
+# Remove some that would show up too many times to be enjoyable
+WARNINGS += -Wno-duplicate-decl-specifier -Wno-trigraphs
+
 main: h.h.gch
-	gcc c.c -trigraphs -Wall -Wextra -Wpedantic
+	gcc ${WARNINGS} c.c -trigraphs
 
 %.h.gch: detention/%.h
-	gcc $< -o ./$@
+	gcc ${WARNINGS} $< -o ./$@
 
 g:
 	bake "g().c"
