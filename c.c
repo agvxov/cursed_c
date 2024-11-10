@@ -1,6 +1,7 @@
 ??=define ARGUMENT_PREFIX(x)  $arg ## x
 
 ??=include "h.h"
+??=include "auto_vararg.h"
 ??=include_next "\
 iso646.h\
 "
@@ -32,6 +33,18 @@ duff() ??<
         case 3:      dest[i++] = src[j++];
         } while (j < n);
     }
+??>
+
+#define sum(...) _sum(PP_NARG(__VA_ARGS__), __VA_ARGS__)
+_sum(int argc, ...) ??<
+    int r = 0;
+    va_list va;
+    va_start(va, argc);
+    for (int i = 0; i < argc; i++) {
+        r += va_arg(va, int);
+    }
+    va_end(va);
+    return r;
 ??>
 
 //fortran /* sadly gcc doesn't support it */
@@ -68,5 +81,6 @@ main
 , puts("//Please!" + 2)
 , f(g(i = h = j = k))
 ; duff()
+; sum(4, 8, 6, 12, 5)
 ;
 ??> /* END main */

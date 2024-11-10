@@ -646,6 +646,44 @@ Duff's Device may or may not result in actual performance gains
 You may read Duff's own thoughts regarding it
 [here](http://doc.cat-v.org/bell_labs/duffs_device).
 
+### \_sum(int argc, ...)
+Back to variadic functions and their quirks.
+Who cares if they nuke type safety?
+Let's talk about the real problem: ergonomics.
+
+Any variadic function has to have some way to tell how many arguments it was given.
+In practice this boils down to one of the following techniques:
++ pass the number of extra arguments as a named argument
++ encode the number of arguments in a named argument (e.g. format string)
++ choose a termination value for the extra arguments (e.g `NULL`, passed as the last argument)
+
+Sometimes -when trying to create comfortable interfaces- the first option seems perfect,
+if not for passing this count by hand.
+
+Thing is, the preprocessor can save our day.
+Take a look inside `auto_vararg.h`.
+
+Macros can be variadic too.
+`__VA_ARGS__`  is a standard macro, it simply expands to the variadic arguments.
+
+`PP_128TH_ARG` always expands to its 128th argument.
+
+`PP_RSEQ_N` expands to 128 numbers in descending order, 0 inclusive.
+
+If we pass `PP_RSEQ_N` to `PP_128TH_ARG` it will return 0 to us.
+If we were to place exactly one argument before `PP_RSEQ_N`,
+all of its values would be shifted to the right,
+resulting in `1` becoming the 128th argument of `PP_128TH_ARG`.
+More generally, passing N arguments before `PP_RSEQ_N` will offset it by N,
+shifting the correct value to the 128th argument of `PP_128TH_ARG`.
+
+In effect, we have just automated passing the argument count!
+
+Argument counter hack credits:
++ [https://stackoverflow.com/a/35693080](https://stackoverflow.com/a/35693080)
++ [https://stackoverflow.com/a/26408195](https://stackoverflow.com/a/26408195)
++ [https://stackoverflow.com/a/2124385](https://stackoverflow.com/a/2124385)
+
 ---
 
 ## Challenge
