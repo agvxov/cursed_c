@@ -221,7 +221,7 @@ but they are extremely cool.
 They provide ways to both aid the compiler (or make it shut up)
 and make code self-documenting.
 
-Too bad that C botched the syntax.
+Too bad that C initially botched the syntax.
 Consider the following:
 
 Both of these specify that `func` will never return.
@@ -234,6 +234,13 @@ C++:
 ```C++
 [[ noreturn ]]
 ```
+
+But good news!
+With C23,
+C++ style attributes are being introduced.
+
+What better way to celebrate this,
+than to use all syntaxes possible at the same time?
 
 ### Google?
 Google.

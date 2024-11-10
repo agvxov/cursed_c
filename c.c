@@ -38,6 +38,7 @@ duff() ??<
 _Noreturn
 __attribute__((noreturn))
 const void
+[[ noreturn ]]
 main
 (
   ARGUMENT_PREFIX (c),
