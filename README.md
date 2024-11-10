@@ -604,11 +604,11 @@ do {
 } while (counter++ < repeat_count);
 ```
 Here,
-after every call to `perform_stuff()` we have to perform a jump instuction
+after every call to `perform_stuff()` we have to perform a jump instruction
 to the top of the loop for every repetition.
 With the standards of modern software,
 the cost is small,
-however there are circomstances where it could be a legitamate performance concern.
+however there are circumstances where it could be a legitimate performance concern.
 An optimization would be:
 ```C
 do {
