@@ -3,10 +3,10 @@ WARNINGS := -Wall -Wextra -Wpedantic
 # Remove some that would show up too many times to be enjoyable
 WARNINGS += -Wno-duplicate-decl-specifier -Wno-trigraphs
 
-CFLAGS := ${WARNINGS} -ggdb
+CFLAGS := ${WARNINGS} -trigraphs -ggdb
 
 main: h.h.gch
-	gcc ${CFLAGS} c.c -trigraphs
+	gcc ${CFLAGS} c.c
 
 %.h.gch: detention/%.h
 	gcc ${CFLAGS} $< -o ./$@
