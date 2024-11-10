@@ -549,7 +549,7 @@ However,
 in the case of `g()` the compiler not required to perform type promotions.
 Also,
 the generated assembly is... strange.
-That's what `g().c` and `g(...).c` are here for.
+That's what `tool/g().c` and `tool/g(...).c` are here for.
 Here is the relevant part of their disassembly:
 ```Asm
 // @BAKE gcc -g -O0 "$@" -o "$*"                                |  // @BAKE gcc -g -O0 "$@" -o "$*" -Wall -Wpedantic

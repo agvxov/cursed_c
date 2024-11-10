@@ -10,10 +10,12 @@ main: h.h.gch
 	gcc ${WARNINGS} $< -o ./$@
 
 g:
-	bake "g().c"
-	bake "g(...).c"
-	diff -s -y -t <(objdump -S "g().out") <(objdump -S "g(...).out") > diff.txt
+	bake "tool/g().c"
+	bake "tool/g(...).c"
+	-diff -s -y -t <(objdump -S "tool/g().out") <(objdump -S "tool/g(...).out") > diff.txt
 
 clean:
 	-rm *.gch
 	-rm *.out
+	-rm diff.txt
+	-rm tool/*.out
