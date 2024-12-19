@@ -74,6 +74,8 @@ main
         break;
     ??>
   ??> /* END f */
+; float F = 0.0f / 0.0f
+; if (F == F) { return 1; }
 ; long long i, h, j, k
 ; https://google.com
 ; const short d = i ? 2*i : i

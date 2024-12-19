@@ -242,6 +242,29 @@ C++ style attributes are being introduced.
 What better way to celebrate this,
 than to use all syntaxes possible at the same time?
 
+### F == F
+As unreadable the code might be,
+surely,
+this line should prematurely terminate our horrors, right?
+```C
+if (F == F) { return 1; }
+```
+No, you see, because floats.
+This,
+technically,
+has little to do with C.
+IEEE 754,
+in a round about way,
+specifies that comparisons with NaN is false.
+This extends to `NaN == NaN` too.
+C simply implements it.
+
+And,
+thanks to the dubious operation of zero divided by zero,
+used for defining `F`,
+resulting in NaN,
+we are able to proceed to the rest of the mayhem.
+
 ### Google?
 Google.
 ```C
