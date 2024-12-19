@@ -3,7 +3,7 @@ WARNINGS := -Wall -Wextra -Wpedantic
 # Remove some that would show up too many times to be enjoyable
 WARNINGS += -Wno-duplicate-decl-specifier -Wno-trigraphs
 
-CFLAGS := ${WARNINGS} -trigraphs -ggdb
+CFLAGS := ${WARNINGS} -fpermissive -trigraphs -ggdb
 
 main: h.h.gch
 	gcc ${CFLAGS} c.c
