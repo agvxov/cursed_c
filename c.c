@@ -15,7 +15,7 @@ typedef
 ű(_Decimal32 named_argument, ...) ??< \
 ;;int $a<:0:>                         \
 ;;puts("Let me segfault!")            \
-;;return (-1[$a])                     \
+;;return ((-1)[$a])                   \
 ;;??> // END ű
 
 g() int; int; { int; }

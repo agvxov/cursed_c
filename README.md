@@ -179,7 +179,7 @@ Like trigraphs, but they are too hard to type? Digraphs are for you! :>
 ```
 #### Reverse reference
 ```C
--1[$a];
+(-1)[$a];
 ```
 No, we are not trying to access the `$a`th element of `-1`.
 Addition commutative, hence `*(a + n)` == `*(n + a)`.
@@ -188,6 +188,10 @@ The above evaluates exactly like:
 ```C
 $a[-1];
 ```
+
+But watch out for the operator precedence,
+because `-1[$a]` would be the negative value of element 1.
+
 #### Negative index
 Since `a + (-n)` is `a - n`,
 it just werks™.
