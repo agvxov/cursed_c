@@ -18,8 +18,6 @@ typedef
 ;;return ((-1)[$a])                   \
 ;;??> // END ű
 
-g() int; int; { int; }
-
 duff() ??<
     char src[] = "Copy this message";
     int n = sizeof(src);
@@ -64,6 +62,7 @@ main
 ??<
   signed f
   (
+    int
   )
   ??<
     ((const void (*)(void))bitand ű)();
@@ -81,8 +80,9 @@ main
 ; const short d = i ? 2*i : i
 ; puts("Make it stop, cruel" " " "w" "o" "r" "l" "d" "!")
 , puts("//Please!" + 2)
-, f(g(i = h = j = k))
+, f(i = h = j = k)
 ; duff()
 ; sum(4, 8, 6, 12, 5)
+; printf("%30%")
 ;
 ??> /* END main */

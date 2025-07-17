@@ -1,8 +1,7 @@
 # Cursed C
 > An attempt to create the worst C program ever by repeatedly abusing obscure features.
-See `c.c` for the core code.
-Note that there were no version restraints imposed and
-extensions are also included.
+(Note that there were no version restraints imposed and
+extensions are also included.)
 
 ---
 
@@ -10,10 +9,15 @@ extensions are also included.
 
 ---
 
+> [!TIP]
+> See `c.c` for the core code.
+
+> [!TIP]
+> See `legacy.md` for wizardly that would be hard to compile nowadays.
+
 ## Rationale
 + it was fun
 + perhaps it will be educational for someone
-
 
 ## Break down
 
