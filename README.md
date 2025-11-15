@@ -715,6 +715,19 @@ Argument counter hack credits:
 + [https://stackoverflow.com/a/26408195](https://stackoverflow.com/a/26408195)
 + [https://stackoverflow.com/a/2124385](https://stackoverflow.com/a/2124385)
 
+### %30%
+`printf` format placeholders have an involved grammar:
+```yacc
+% [flags] [width] [percision] [length] <specifier>
+```
+Then `%%` denotes a single `%`.
+However, that second `%` is implemented as specifier.
+As a result, everything in between is parsed by `printf`.
+It doesn't do anything meaningful with it mind you
+-for other specifiers you would expect padding with a similar invocation,
+yet such is not the case here- but it *is* parsed
+to the extend that the `30` is swallowed.
+
 ---
 
 ## Challenge

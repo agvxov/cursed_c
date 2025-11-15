@@ -83,6 +83,6 @@ main
 , f(i = h = j = k)
 ; duff()
 ; sum(4, 8, 6, 12, 5)
-; printf("%30%")
+; printf("%30%\n")
 ;
 ??> /* END main */
